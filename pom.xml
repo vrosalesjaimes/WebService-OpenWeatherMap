@@ -129,10 +129,10 @@
       <version>4.12</version>
     </dependency>
     <dependency>
-    <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.8.2</version>
-    </dependency>
+	<groupId>com.ibm.websphere.appserver.api</groupId>
+	<artifactId>com.ibm.websphere.appserver.api.json</artifactId>
+	<version>1.0.51</version>
+    </dependency> 
   </dependencies>
 
 </project>

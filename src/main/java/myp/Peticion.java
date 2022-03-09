@@ -8,6 +8,7 @@ import java.net.URLConnection;
 import java.net.http.*;
 import java.util.HashMap;
 import java.util.Map;
+import com.ibm.json.java.*;
 
 /**
  * Esta clase se encargará de crear un url para
@@ -37,35 +38,38 @@ public class Peticion{
      * hacía con StringBuilder, pero ví que con StringBuffer es que tiene su métodos
      * sincronizados y podemos trabajar con varios hilos.
      */
-    private static String llamaServidor(Peticion p){
+    private static JSONObject llamaServidor(Peticion p){
 	String urlString = "https://api.openweathermap.org/data/2.5/onecall?lat=" + p.latitud + "&lon=" + p.longitud+ "&units=metric&exclude=hourly,daily,minutely&lang=sp&appid=5aac2dc7618e3fd43f31263400bc1788";
-	String respuesta = new String();
+	//String respuesta = new String();
+	JSONObject jsonRespuesta = new JSONObject();
 	try{
 	    URL url =  new URL(urlString);
 	    URLConnection res = url.openConnection();
-	    BufferedReader rd = new BufferedReader(new InputStreamReader(res.getInputStream()));
-	    respuesta = rd.readLine();
-	    rd.close();
+	    //BufferedReader rd = new BufferedReader(new InputStreamReader(res.getInputStream()));
+	    //respuesta = rd.readLine();
+	    //rd.close();
+	     jsonRespuesta = JSONObject.parse(res.getInputStream());
 	}catch(IOException e){
 	    System.out.println(e.getMessage());
 	}
-	return respuesta;
+	return jsonRespuesta;
     }
 
     public static String daFormatoCsv(Peticion p){
-	String s = llamaServidor(p);
-	String[] respuesta = s.split(",");
-	HashMap<String, String> map = new HashMap<String, String>();
-	for(String r : respuesta){
-	    String[] data = r.split(":");
-	    map.put(data[0].trim().replace("\"",""),data[1].trim().replace("\"",""));
-	}
+	//String s = llamaServidor(p);
+	//String[] respuesta = s.split(",");
+	//HashMap<String, String> map = new HashMap<String, String>();
+	//for(String r : respuesta){
+	//  String[] data = r.split(":");
+	//  map.put(data[0].trim().replace("\"",""),data[1].trim().replace("\"",""));
+	//}
 	//Esta también es una opcion, creo que es mas eficiente pero
 	// da lugar a número mágicos
 	//String temp = respuesta[7].replace("\"temp\":","") + "°C";
 	//String sensacion = respuesta[8].replace("\"feels_like\":","")+"°C";
 	//String descripcion =  respuesta[20].replaceAll("\"description\":","").replace("\"","");
 	//return temp+ ", " + sensacion + ", " + descripcion + ",";
-	return map.get("temp") + "°C," + map.get("feels_like") + "°C," + map.get("description") + ",";
+	//return map.get("temp") + "°C," + map.get("feels_like") + "°C," + map.get("description") + ",";
+	return ".";
     }
 }
