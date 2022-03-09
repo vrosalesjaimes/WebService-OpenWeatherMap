@@ -1,3 +1,5 @@
+package src.main.java.myp;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,13 +33,13 @@ public class Peticion{
     }
 
     /**
-     * Hacemos la petición y la guardamos ne un StringBuffer, en el video que vi
-     * hacía con StringBuilder, pero ví que con StringBuffer es que tiene su métodos 
+     * Hacemos la petición y la guardamos en un StringBuffer, en el video que vi
+     * hacía con StringBuilder, pero ví que con StringBuffer es que tiene su métodos
      * sincronizados y podemos trabajar con varios hilos.
      */
     private static String llamaServidor(Peticion p){
 	String urlString = "https://api.openweathermap.org/data/2.5/onecall?lat=" + p.latitud + "&lon=" + p.longitud+ "&units=metric&exclude=hourly,daily,minutely&lang=sp&appid=5aac2dc7618e3fd43f31263400bc1788";
-	 String respuesta = new String();
+	String respuesta = new String();
 	try{
 	    URL url =  new URL(urlString);
 	    URLConnection res = url.openConnection();

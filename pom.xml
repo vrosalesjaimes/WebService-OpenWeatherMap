@@ -14,7 +14,7 @@
     Proyecto 1 de Modelado y progrmación.
   </description>
   <organization>
-    <name>Victor Rosales Jaimes</name>
+    <name>Victor Rosales Jaimes, Raúl Bernal Núñez</name>
   </organization>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -66,7 +66,7 @@
 	<configuration>
 	  <archive>
 	    <manifest>
-	      <mainClass>myp.Ticket</mainClass>
+	      <mainClass>src.main.java.myp.Proyecto01</mainClass>
 	    </manifest>
 	  </archive>
 	</configuration>
