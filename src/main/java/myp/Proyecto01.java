@@ -1,4 +1,4 @@
-package src.main.java.myp;
+package myp;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.io.File;
@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import com.ibm.json.java.*;
 
 public class Proyecto01{
 
@@ -67,8 +68,10 @@ public class Proyecto01{
     }
 
     public static void main(String[] args) {
-	String nombreCsv = "dataset2.csv";
-	String archivo = leerCsv(nombreCsv);
-	System.out.println(archivo);
+	//	String nombreCsv = "dataset2.csv";
+	//String archivo = leerCsv(nombreCsv);
+	//System.out.println(archivo);
+	Peticion p = new Peticion("LNM","37.39", "-122.08");
+	System.out.println(Peticion.daFormatoCsv(p));
     }
 }
