@@ -38,7 +38,7 @@ public class Peticion{
      * sincronizados y podemos trabajar con varios hilos.
      */
     private static String llamaServidor(Peticion p){
-	String urlString = "https://api.openweathermap.org/data/2.5/onecall?lat=" + p.latitud + "&lon=" + p.longitud+ "&units=metric&exclude=hourly,daily,minutely&lang=sp&appid=5aac2dc7618e3fd43f31263400bc1788";
+	String urlString = "https://pro.openweathermap.org/data/2.5/onecall?lat=" + p.latitud + "&lon=" + p.longitud+ "&units=metric&exclude=hourly,daily,minutely&lang=sp&appid=5aac2dc7618e3fd43f31263400bc1788";
 	String respuesta = new String();
 	try{
 	    URL url =  new URL(urlString);
@@ -49,24 +49,15 @@ public class Peticion{
 	}catch(IOException e){
 	    System.out.println(e.getMessage());
 	}
-	return jsonRespuesta;
+	return respuesta;
     }
 
     public static String daFormatoCsv(Peticion p){
-	String json = llamaServidor(p);
+	String s = llamaServidor(p);
 	String[] respuesta = s.split(",");
-	HashMap<String, String> map = new HashMap<String, String>();
-	for(String r : respuesta){
-	    String[] data = r.split(":");
-	    map.put(data[0].trim().replace("\"",""),data[1].trim().replace("\"",""));
-	}
-	//Esta también es una opcion, creo que es mas eficiente pero
-	// da lugar a número mágicos
-	//String temp = respuesta[7].replace("\"temp\":","") + "°C";
-	//String sensacion = respuesta[8].replace("\"feels_like\":","")+"°C";
-	//String descripcion =  respuesta[20].replaceAll("\"description\":","").replace("\"","");
-	//return temp+ ", " + sensacion + ", " + descripcion + ",";
-	return map.get("temp") + "°C," + map.get("feels_like") + "°C," + map.get("description") + ",";
-	return temp;
+	String temp = respuesta[7].replace("\"temp\":","") + "°C";
+	String sensacion = respuesta[8].replace("\"feels_like\":","")+"°C";
+	String descripcion =  respuesta[20].replaceAll("\"description\":","").replace("\"","");
+	return temp+ ", " + sensacion + ", " + descripcion + ",";
     }
 }
