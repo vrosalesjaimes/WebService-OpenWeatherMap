@@ -1,4 +1,4 @@
-package src.main.java.myp;
+package myp;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.io.File;
@@ -68,7 +68,7 @@ public class Proyecto01{
 
     public static void main(String[] args) {
 	String nombreCsv = "dataset2.csv";
-	String archivo = leerCsv(nombreCsv);
+        String archivo = leerCsv(nombreCsv);
 	System.out.println(archivo);
     }
 }

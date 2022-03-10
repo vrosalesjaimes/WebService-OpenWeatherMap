@@ -1,4 +1,4 @@
-package src.main.java.myp;
+package myp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -49,11 +49,11 @@ public class Peticion{
 	}catch(IOException e){
 	    System.out.println(e.getMessage());
 	}
-	return respuesta;
+	return jsonRespuesta;
     }
 
     public static String daFormatoCsv(Peticion p){
-	String s = llamaServidor(p);
+	String json = llamaServidor(p);
 	String[] respuesta = s.split(",");
 	HashMap<String, String> map = new HashMap<String, String>();
 	for(String r : respuesta){
@@ -67,5 +67,6 @@ public class Peticion{
 	//String descripcion =  respuesta[20].replaceAll("\"description\":","").replace("\"","");
 	//return temp+ ", " + sensacion + ", " + descripcion + ",";
 	return map.get("temp") + "°C," + map.get("feels_like") + "°C," + map.get("description") + ",";
+	return temp;
     }
 }
