@@ -18,16 +18,17 @@ public class Proyecto01{
 
     private static void procesaCsv(String archivo){
 	try{
-	    BufferedReader csv = new BufferedReader(new FileReader(archivo));
+	    BufferedReader csv = new BufferedReader(new InputStreamReader(new FileInputStream(archivo)));
 	    BufferedWriter out = new BufferedWriter(
 				     new OutputStreamWriter(
-					 new FileOutputStream("../../../../salida.csv")));
-	    String linea;
+					 new FileOutputStream("salida.csv")));
+	    out.write("Origen, Temperatura, Sensación térmica, Descripción, Destino, Temperatura, Sensación términa, Descripción");
+	    String linea = csv.readLine();
 	    while((linea = csv.readLine()) != null){
 		String[] viaje = linea.split(",");
-		Peticion origen = new Peticion(viaje[0], viaje[2], viaje[3]);
-		Peticion destino = new Peticion(viaje[1], viaje[4], viaje[5]);
-		out.write(esUnaPeticionRepetida(origen) + "," + esUnaPeticionRepetida(destino));
+		Peticion origen = new Peticion(viaje[0].trim(), viaje[2], viaje[3]);
+		Peticion destino = new Peticion(viaje[1].trim(), viaje[4], viaje[5]);
+		out.write(esUnaPeticionRepetida(origen) + esUnaPeticionRepetida(destino)+ "\n");
 	    }
 	    out.close();
 	} catch(IOException ioe) {
@@ -44,31 +45,9 @@ public class Proyecto01{
 	}
     }
 
-    private static String leerCsv(String nombreArchivo) {
-	String csv = "";
-	String auxiliar = "";
-	try {
-	    File f = new File(nombreArchivo);
-	    String ruta = f.getAbsolutePath();
-	    FileInputStream fileIn = new FileInputStream(nombreArchivo);
-	    InputStreamReader isIn = new InputStreamReader(fileIn);
-	    BufferedReader in = new BufferedReader(isIn);
-	    auxiliar = in.readLine();
-	    while(auxiliar != null) {
-		csv = csv + "," + auxiliar;
-		auxiliar = in.readLine();
-	    }
-	    in.close();
-	} catch(IOException ioe) {
-	    System.out.println(ioe.getMessage());
-            System.exit(1);
-	}
-	return csv;
-    }
 
     public static void main(String[] args) {
-	String nombreCsv = "dataset2.csv";
-        String archivo = leerCsv(nombreCsv);
-	System.out.println(archivo);
+	String nombreCsv = "dataset1.csv";
+	procesaCsv(nombreCsv);
     }
 }
