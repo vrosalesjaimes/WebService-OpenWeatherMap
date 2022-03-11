@@ -4,3 +4,4 @@ Integrantes:
 
 - Victor Rosales Jaimes
 - Bernal Núñez Raúl
+- José Angel Valerio Ceballos
