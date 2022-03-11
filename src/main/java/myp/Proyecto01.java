@@ -22,7 +22,7 @@ public class Proyecto01{
 	    BufferedWriter out = new BufferedWriter(
 				     new OutputStreamWriter(
 					 new FileOutputStream("salida.csv")));
-	    out.write("Origen, Temperatura, Sensación térmica, Descripción, Destino, Temperatura, Sensación términa, Descripción");
+	    out.write("Origen, Temperatura, Sensación térmica, Descripción, Destino, Temperatura, Sensación térmica, Descripción");
 	    String linea = csv.readLine();
 	    while((linea = csv.readLine()) != null){
 		String[] viaje = linea.split(",");

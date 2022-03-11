@@ -37,7 +37,7 @@ public class Peticion{
      * hacía con StringBuilder, pero ví que con StringBuffer es que tiene su métodos
      * sincronizados y podemos trabajar con varios hilos.
      */
-    private static String llamaServidor(Peticion p){
+    public static String llamaServidor(Peticion p){
 	String urlString = "https://pro.openweathermap.org/data/2.5/onecall?lat=" + p.latitud + "&lon=" + p.longitud+ "&units=metric&exclude=hourly,daily,minutely&lang=sp&appid=5aac2dc7618e3fd43f31263400bc1788";
 	String respuesta = new String();
 	try{
