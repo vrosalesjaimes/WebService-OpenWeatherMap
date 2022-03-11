@@ -1,4 +1,4 @@
-# Proyecto 01: Modelado y Programación.
+# Proyecto 1: Modelado y Programación.
 
 ## Integrantes:
 
