@@ -1,6 +1,6 @@
-Proyecto 01: Modelado y Programación.
+# Proyecto 01: Modelado y Programación.
 
-Integrantes:
+## Integrantes:
 
 - Victor Rosales Jaimes
 - Bernal Núñez Raúl
