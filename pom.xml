@@ -62,11 +62,27 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>myp.Proyecto01</mainClass>
+              <mainClass>myp.WebService</mainClass>
             </manifest>
           </archive>
         </configuration>
       </plugin>
+
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>myp.WebService</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
@@ -79,7 +95,7 @@
       </plugin>
 
     </plugins>
-    <finalName>proyecto1</finalName>
+    <finalName>WebService</finalName>
   </build>
 
   <reporting>
@@ -118,6 +134,11 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20201115</version>
     </dependency>
   </dependencies>
 </project>

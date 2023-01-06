@@ -20,10 +20,10 @@ public class Peticion {
     private String codigoIata;
 
     /**
-     * Constructor de la clase Peticion.
-     * @param codeIata, código iata de la ciudad para saber su estado de tiempo.
-     * @param longitud, longitud de la ciudad para saber su estado de tiempo.
-     * @param latitud, latitud de la ciudad para saber su estado de tiempo
+     * Constructor 
+     * @param codigoIata, código Iata de la petición.
+     * @param latitud, longitud de la petición.
+     * @param longitud, longitud de la petición.
      */
     public Peticion(String codigoIata, String latitud, String longitud){
     	this.codigoIata  = codigoIata;
@@ -67,15 +67,15 @@ public class Peticion {
 	 * Regresa el código iata de la petición. 
 	 * @return el código iata de la petición.
 	 */
-	public String getCodeIata() {
+	public String getCodigoIata() {
 		return codigoIata;
 	}
 
 	/**
 	 * Cambia el valor de código iata.
-	 * @param codeIata, el nuevo código iata.
+	 * @param codigoIata, el nuevo código iata.
 	 */
-	public void setCodeIata(String codigoIata) {
+	public void setCodigoIata(String codigoIata) {
 		this.codigoIata = codigoIata;
 	}
 	
@@ -86,16 +86,62 @@ public class Peticion {
 	 */
 	public boolean esValido(){
 		double latitud, longitud;
+		
 		try{
 			latitud = Double.parseDouble(this.latitud);
 			longitud = Double.parseDouble(this.longitud);
 		} catch (NumberFormatException nfe) {
 			return false;
 		}
+		
 		if (latitud < -90 || latitud > 90)
 			return false;
 		if (longitud < -180 || longitud > 180)
 			return false;
+		
 		return true;
+	}
+	
+	/**
+	 * Hace una petición al servidor de OpenWeatherMap.
+	 * @return, regresa una Respuesta.
+	 * @throws Exception
+	 */
+	public Respuesta get() throws Exception {
+		if (!this.esValido()) {
+			throw new Exception("La petición no es válida");
+		}
+		
+		String urlString = "https://api.openweathermap.org/data/2.5/onecall?lat=" + this.latitud + "&lon=" + this.longitud+ "&units=metric&exclude=hourly,daily,minutely&lang=sp&appid=5aac2dc7618e3fd43f31263400bc1788";
+		String respuesta = new String();
+		
+		try{
+		    URL url =  new URL(urlString);
+		    URLConnection res = url.openConnection();
+		    BufferedReader rd = new BufferedReader(new InputStreamReader(res.getInputStream()));
+		    respuesta = rd.readLine();
+		    rd.close();
+		}catch(IOException e){
+		    System.out.println(e.getMessage());
+		}
+		
+		return new Respuesta(respuesta);
+	}
+	
+	/**
+	 * Regresa una representación en cadena de una petición.
+	 * @return una representación en cadena de una petición.
+	 */
+	@Override
+	public String toString() {
+		String s = "";
+		try {
+			Respuesta r = this.get();
+			s = this.codigoIata + "," + r.toString();
+		} catch (Exception e) {
+			System.out.println("Ha ocurrido un error inesperado");
+			System.exit(-1);
+		}
+		return s;
 	}
 }
