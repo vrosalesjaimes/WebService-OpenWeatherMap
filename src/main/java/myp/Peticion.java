@@ -78,4 +78,24 @@ public class Peticion {
 	public void setCodeIata(String codigoIata) {
 		this.codigoIata = codigoIata;
 	}
+	
+	/**
+	 * Regresa true si la petición es válida, falso en otro caso
+	 * @return {@code true} si la longitud y latitud de la petición es válida,
+	 * 		   {@code false} en caso contrario.
+	 */
+	public boolean esValido(){
+		double latitud, longitud;
+		try{
+			latitud = Double.parseDouble(this.latitud);
+			longitud = Double.parseDouble(this.longitud);
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
+		if (latitud < -90 || latitud > 90)
+			return false;
+		if (longitud < -180 || longitud > 180)
+			return false;
+		return true;
+	}
 }
