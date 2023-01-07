@@ -14,6 +14,7 @@
   </description>
   <organization>
     <name>Victor Rosales Jaimes</name>
+    <url>https://vrosalesjaimes.netlify.app/</url>
   </organization>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,6 +48,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
+          <release>11</release>
           <compilerArgument>-Xlint:deprecation</compilerArgument>
           <compilerArgument>-Xlint:unchecked</compilerArgument>
           <debug>true</debug>

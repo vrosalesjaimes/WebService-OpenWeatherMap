@@ -1,28 +1,38 @@
-# Proyecto 1: Modelado y Programación.
+# Web Service - OpenWeatherMap
 
-## Integrantes:
+La mayoría de los sitios web grandes: Facebook, Google, Microsoft; usan aplicaciones que utilizan servicios webs (web services). Un web service es un conjunto de protocolos y estándares que sirven para intercambiar datos entre aplicaciones. Son bastante prácticos debido a que son independientes de las aplicaciones.
 
-- Victor Rosales Jaimes
-- Bernal Núñez Raúl
-- José Angel Valerio Ceballos
+El término Web Services describe una forma estandarizada de integrar aplicaciones WEB mediante el uso de XML, SOAP, WSDL y UDDI sobre los protocolos de la Internet. XML es usado para describir los datos, SOAP se ocupa para la transferencia de los datos, WSDL se emplea para describir los servicios disponibles y UDDI se ocupa para conocer cuales son los servicios disponibles. Uno de los usos principales es permitir la comunicaci ́on entre las empresas y entre las empresas y sus clientes. Los Web Services permiten a las organizaciones intercambiar datos sin necesidad de conocer los detalles de sus respectivos Sistemas de Información.
 
+# Descripción
 El proyecto consiste en realizar un informe del clima de la ciudad de salida y la ciudad de llegada para 3 mil tickets del aeropuerto de la Ciudad de México, los cuales salen el día en el que el programa se ejecuta. Hacemos uso de [OpenWatherMap](https://openweathermap.org/), es al webservice que le hacemos las peticiones que contienen el clima.
+# Requisitos
 
-Para poder correr el proyecto es necesario tener instalado [maven](https://maven.apache.org/).
+ - Tener instalado Java 11 o superior.
+ - Tener instalado [maven](https://maven.apache.org/).
 
-Se puede clonar el repositorio escribiendo en la terminal:
->$ git clone https://github.com/vrosalesjaimes/proyecto01.git
+# Repositorio
+Se puede clonar el repositorio con el siguiente comando:
+```
+git clone https://github.com/vrosalesjaimes/proyecto01.git
+```
+# Ejecución
+Una vez clonado el repositorio accedemos al directorio **WebService-OpenWeatherMap** o desde línea de comando podemos acceder a dicha carpeta con el comando 
 
-Para compilar escribimos en la terminal:
->$ mvn compile
+    cd WebService-OpenWeatherMap
+Ya estando en la carpeta, para compilar y generar el ejecutable lo hacemos con el comando
 
-Para correr las pruebas unitarias escribimos en la terminal:
->$ mvn test
+    mvn clean compile assembly:single
 
-Para generar el ejecutable del proyecto escribimos en la terminal:
->$ mvn install
+Se pueden consultar más detalles de la forma de compilación [aquí](https://vrosalesjaimes.netlify.app/sections/post/maven). Por último, para ejecutar el programa usamos el comando
 
-Por último, para ejecutar el proyecto escribimos en la terminal
->$ java -jar target/proyecto1.jar
+     java -jar target/WebService-jar-with-dependencies.jar
 
-Todos los pasos anteriores deben ser ejecutados desde la carpeta principal del proyecto.
+
+# Documentación
+Puedes consultar la documentación [aquí](https://63b9eeac60c30179d235babf--webservice-opemweathermap.netlify.app/apidocs/myp/package-summary.html) o generarla con el comando 
+
+    mvn site
+
+# 
+[![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
